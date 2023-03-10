@@ -1,141 +1,113 @@
 public class VariablesTheme {
 
     public static void main(String[] args) {
-        printTask1();
-        printTask2();
-        printTask3();
-        printTask4();
-        printTask5();
-        printTask6();
-        printTask7();
-        printTask8();
-        printTask9();
+        printPrimitiveVariables();
+        printCalcPrices();
+        printJava();
+        printMax();
+        printSwapVariables();
+        printCodesSymbols();
+        printDuke();
+        printSumMulNumber();
+        printTime();
     }
 
-    private static void printTask1() {
-        final String DESCRIPTION_TASK1          = "1. Вывод значений переменных на консоль\n";
-        final String DESCRIPTION_RAM            = "Количество гигабайт оперативной памяти: ";
-        final String DESCRIPTION_SHADERS        = "Количество шейдерных процесов в видеоадаптаре: ";
-        final String DESCRIPTION_BUS_WIDTH      = "Ширина шины между графическим процессором и видеопамятью: ";
-        final String DESCRIPTION_GPU_CLOCK      = "Текущая выбранная частота графического процессора: ";
-        final String DESCRIPTION_PIXEL_FILLRATE = "Количество пикселей, которые могут быть просчитаны видеоадаптером за одну секунду: ";
-        final String DESCRIPTION_BAND_WIDTH     = "Эффективная пропускная способность шины между графическим процессором и видеопамятью: ";
-        final String DESCRIPTION_ROP            = "Количество блоков растровых операций в видеоадаптаре: ";
-        final String DESCRIPTION_OPENCL         = "Доступность технологии openCl в видеоадаптаре: ";
-
-        byte ram            = 16;
-        short shaders       = 24;
-        int busWidth        = 128;
-        long gpuСlock       = 350;
+    private static void printPrimitiveVariables() {
+        byte ram = 16;
+        short shaders = 24;
+        int busWidth = 128;
+        long gpuСlock = 350;
         float pixelFillrate = 8.4f;
-        double bandWidth    = 42.7d;
-        char rop            = '8';
-        boolean openCl      = true;
+        double bandWidth = 42.7d;
+        char rop = '8';
+        boolean openCl = true;
 
-        System.out.println(DESCRIPTION_TASK1 +
-                DESCRIPTION_RAM            + ram           + '\n' +
-                DESCRIPTION_SHADERS        + shaders       + '\n' +
-                DESCRIPTION_BUS_WIDTH      + busWidth      + '\n' +
-                DESCRIPTION_GPU_CLOCK      + gpuСlock      + '\n' +
-                DESCRIPTION_PIXEL_FILLRATE + pixelFillrate + '\n' + 
-                DESCRIPTION_BAND_WIDTH     + bandWidth     + '\n' +
-                DESCRIPTION_ROP            + rop           + '\n' +
-                DESCRIPTION_OPENCL         + openCl        + '\n');
+        System.out.println("1. Вывод значений переменных на консоль");
+        System.out.println("Количество гигабайт оперативной памяти: " + ram);
+        System.out.println("Количество шейдерных процессов в видеоадаптере: " + shaders);
+        System.out.println("Ширина шины между графическим процессором и видеопамятью: " + busWidth);
+        System.out.println("Текущая выбранная частота графического процессора: " + gpuСlock);
+        System.out.println("Количество пикселей, которые могут быть просчитаны видеоадаптером " + 
+                "за одну секунду: " + pixelFillrate);
+        System.out.println("Эффективная пропускная способность шины между графическим процессором" + 
+                " и видеопамятью: " + bandWidth);
+        System.out.println("Количество блоков растровых операций в видеоадаптере: " + rop);
+        System.out.println("Доступность технологии openCl в видеоадаптере: " + openCl + '\n');
     }
 
-    private static void printTask2() {
-        final String DESCRIPTION_TASK2        = "2. Расчет стоимости товара со скидкой\n";
-        final String DESCRIPTION_PRICE_NO_DIS = "Общая стоимость товаров без скидки: ";
-        final String DESCRIPTION_PRICE_DIS    = "Общая стоимость товаров со скидкой: ";
-        final String DESCRIPTION_SUM_DIS      = "Сумма скидки: ";
-
-        float penPrice             = 100f;
-        float bookPrice            = 200f;
-        float discount             = 11f;
+    private static void printCalcPrices() {
+        float penPrice = 100f;
+        float bookPrice = 200f;
+        float discount = 11f;
         float totalPriceNoDiscount = penPrice + bookPrice;
-        float sumDiscount          = totalPriceNoDiscount * discount / 100f;
-        float totalPriceDiscount   = totalPriceNoDiscount - sumDiscount;
+        float sumDiscount = totalPriceNoDiscount * discount / 100f;
+        float totalPriceDiscount = totalPriceNoDiscount - sumDiscount;
 
-        System.out.println(DESCRIPTION_TASK2 +
-                DESCRIPTION_PRICE_NO_DIS + totalPriceNoDiscount + '\n' + 
-                DESCRIPTION_SUM_DIS      + sumDiscount          + '\n' +
-                DESCRIPTION_PRICE_DIS    + totalPriceDiscount   + '\n');
+        System.out.println("2. Расчет стоимости товара со скидкой");
+        System.out.println("Общая стоимость товаров без скидки: " + totalPriceNoDiscount);
+        System.out.println("Общая стоимость товаров со скидкой: " + sumDiscount);
+        System.out.println("Сумма скидки: " + totalPriceDiscount + '\n');
     }
 
-    private static void printTask3() {
-        final String DESCRIPTION_TASK3 = "3. Вывод слова JAVA\n";
-
-        System.out.println(DESCRIPTION_TASK3 + 
-                "   J    a  v     v  a   \n" +
-                "   J   a a  v   v  a a  \n" +
-                "J  J  aaaaa  V V  aaaaa \n" +  
-                " JJ  a     a  V  a     a\n");
+    private static void printJava() {
+        System.out.println("3. Вывод слова JAVA");
+        System.out.println("   J    a  v     v  a   ");
+        System.out.println("   J   a a  v   v  a a  ");
+        System.out.println("J  J  aaaaa  V V  aaaaa ");
+        System.out.println(" JJ  a     a  V  a     a\n");
     }
 
-    private static void printTask4() {
-        final String DESCRIPTION_TASK4    = "4. Вывод min и max значений целых числовых типов\n";
-        final String STR_MAX_VALUE        = "Максимальное значение типа ";
-        final String STR_PLUS_1           = " + 1";
-        final String STR_MINUS_1          = " - 1";
-        final String STR_SEP              = " = ";
-
-        byte numberByte   = Byte.MAX_VALUE; 
+    private static void printMax() {
+        byte numberByte = Byte.MAX_VALUE; 
         short numberShort = Short.MAX_VALUE;
-        int numberInt     = Integer.MAX_VALUE;
-        long numberLong   = Long.MAX_VALUE;
+        int numberInt = Integer.MAX_VALUE;
+        long numberLong = Long.MAX_VALUE;
 
-        System.out.println(DESCRIPTION_TASK4 +
-                STR_MAX_VALUE + Byte.TYPE    + STR_SEP    + numberByte  + "\n" + 
-                STR_MAX_VALUE + Short.TYPE   + STR_SEP    + numberShort + "\n" + 
-                STR_MAX_VALUE + Integer.TYPE + STR_SEP    + numberInt   + "\n" + 
-                STR_MAX_VALUE + Long.TYPE    + STR_SEP    + numberLong  + "\n\n" +
-                STR_MAX_VALUE + Byte.TYPE    + STR_PLUS_1 + STR_SEP     + ++numberByte  + "\n" + 
-                STR_MAX_VALUE + Short.TYPE   + STR_PLUS_1 + STR_SEP     + ++numberShort + "\n" + 
-                STR_MAX_VALUE + Integer.TYPE + STR_PLUS_1 + STR_SEP     + ++numberInt   + "\n" + 
-                STR_MAX_VALUE + Long.TYPE    + STR_PLUS_1 + STR_SEP     + ++numberLong  + "\n\n" +
-                STR_MAX_VALUE + Byte.TYPE    + STR_PLUS_1 + STR_MINUS_1 + STR_SEP       + --numberByte  + "\n" + 
-                STR_MAX_VALUE + Short.TYPE   + STR_PLUS_1 + STR_MINUS_1 + STR_SEP       + --numberShort + "\n" + 
-                STR_MAX_VALUE + Integer.TYPE + STR_PLUS_1 + STR_MINUS_1 + STR_SEP       + --numberInt   + "\n" + 
-                STR_MAX_VALUE + Long.TYPE    + STR_PLUS_1 + STR_MINUS_1 + STR_SEP       + --numberLong  + "\n");
+        System.out.println("4. Вывод min и max значений целых числовых типов");
+        System.out.println("Byte, max = " + numberByte);
+        System.out.println("Short, max = " + numberShort);
+        System.out.println("Int, max = " + numberInt);
+        System.out.println("Long, max = " + numberLong + '\n');
+
+        System.out.println("Byte, max + 1 = " + ++numberByte);
+        System.out.println("Short, max + 1 = " + ++numberShort);
+        System.out.println("Int, max + 1 = " + ++numberInt);
+        System.out.println("Long, max + 1 = " + ++numberLong + '\n');
+
+        System.out.println("Byte, max + 1 - 1 = " + --numberByte);
+        System.out.println("Short, max + 1 - 1 = " + --numberShort);
+        System.out.println("Int, max + 1 - 1 = " + --numberInt);
+        System.out.println("Long, max + 1 - 1 = " + --numberLong + '\n');
     }
 
-    private static void printTask5() {
-        final String DESCRIPTION_TASK5   = "5. Перестановка значений переменных\n";
-        final String STR_VARIABLE        = "5.1. C помощью третьей переменной:\n";
-        final String STR_ARITHMETIC_OPER = "5.2. C помощью арифметических операций:\n";
-        final String STR_BITWICE_OPER    = "5.3. C помощью побитовой операции\n";
-        final String STR_INITIAL         = "Исходные значения переменных: ";
-        final String STR_NEW             = "Новые значения переменных: ";
-        final String STR_SEP             = " ";
-
-        System.out.println(DESCRIPTION_TASK5);
+    private static void printSwapVariables() {
         int number1 = 2;
         int number2 = 5;
 
-        System.out.println(STR_VARIABLE + STR_INITIAL + number1 + STR_SEP + number2);
+        System.out.println("5. Перестановка значений переменных");
+        System.out.println("5.1. C помощью третьей переменной:");
+        System.out.println("Исходные значения: " + number1 + ", " + number2);
         int temp = number1;
         number1 = number2;
         number2 = temp;
-        System.out.println(STR_NEW + number1 + STR_SEP + number2 + '\n');
+        System.out.println("Новые значения: " + number1 + ", " + number2 + '\n');
 
-        System.out.println(STR_ARITHMETIC_OPER + STR_INITIAL + number1 + STR_SEP + number2);
+        System.out.println("5.2. C помощью арифметических операций:");
+        System.out.println("Исходные значения: " + number1 + ", " + number2);
         number1 += number2;
         number2 = number1 - number2;
         number1 -= number2;
-        System.out.println(STR_NEW + number1 + STR_SEP + number2 + '\n');
+        System.out.println("Новые значения: " + number1 + ", " + number2 + '\n');
 
-        System.out.println(STR_BITWICE_OPER + STR_INITIAL + number1 + STR_SEP + number2);
+        System.out.println("5.3. C помощью побитовой операции");
+        System.out.println("Исходные значения: " + number1 + ", " + number2);
         number1 ^= number2;
         number2 ^= number1;
         number1 ^= number2;
-        System.out.println(STR_NEW + number1 + STR_SEP + number2 + '\n');
+        System.out.println("Новые значения: " + number1 + ", " + number2 + '\n');
     }
 
-    private static void printTask6() {
-        final String DESCRIPTION_TASK6 = "6. Вывод символов и их кодов\n";
-        final String STR_SYMBOL        = ", Символ: ";
-        final String STR_CODE_SYMBOL   = "Код символа: ";
-
+    private static void printCodesSymbols() {
         char symbol1 = '#';
         char symbol2 = '&';
         char symbol3 = '@';
@@ -148,49 +120,41 @@ public class VariablesTheme {
         int code_Symbol4 = symbol4;
         int code_Symbol5 = symbol5;
 
-        System.out.println(DESCRIPTION_TASK6 +
-                STR_CODE_SYMBOL + code_Symbol1 + STR_SYMBOL + symbol1 + '\n' +
-                STR_CODE_SYMBOL + code_Symbol2 + STR_SYMBOL + symbol2 + '\n' +
-                STR_CODE_SYMBOL + code_Symbol3 + STR_SYMBOL + symbol3 + '\n' +
-                STR_CODE_SYMBOL + code_Symbol4 + STR_SYMBOL + symbol4 + '\n' +
-                STR_CODE_SYMBOL + code_Symbol5 + STR_SYMBOL + symbol5 + '\n');
+        System.out.println("6. Вывод символов и их кодов");
+        System.out.println("Код символа: " + code_Symbol1 + ", символ: " + symbol1);
+        System.out.println("Код символа: " + code_Symbol2 + ", символ: " + symbol2);
+        System.out.println("Код символа: " + code_Symbol3 + ", символ: " + symbol3);
+        System.out.println("Код символа: " + code_Symbol4 + ", символ: " + symbol4);
+        System.out.println("Код символа: " + code_Symbol5 + ", символ: " + symbol5 + '\n');
     }
 
-    private static void printTask7() {
-        final String DESCRIPTION_TASK7 = "7. Вывод в консоль ASCII-арт Дюка\n";
-        final String STR_SPACE6 = "      ";
-        final String STR_SPACE4 = "    ";
-        final String STR_SPACE3 = "   ";
-        final String STR_SPACE2 = "  ";
-        final String STR_SPACE1 = " ";
-        
+    private static void printDuke() {
+        String space6 = "      ";
+        String space4 = "    ";
+        String space3 = "   ";
+        String space2 = "  ";
+        String space1 = " ";
+
         char slashRight   = '/';
         char slashLeft    = '\\';
         char underLine    = '_';
         char bracketLeft  = '(';
         char bracketRight = ')'; 
 
-        System.out.println(DESCRIPTION_TASK7 +
-                STR_SPACE4 + slashRight + slashLeft  + STR_SPACE4  + '\n' +
-                STR_SPACE3 + slashRight + STR_SPACE2 + slashLeft   + STR_SPACE3 + '\n' +
-                STR_SPACE2 + slashRight + underLine  + bracketLeft + STR_SPACE1 + bracketRight + slashLeft  + STR_SPACE2 + '\n' +
-                STR_SPACE1 + slashRight + STR_SPACE6 + slashLeft   + STR_SPACE1 + '\n' +
-                slashRight + underLine  + underLine  + underLine   + underLine  +
-                slashRight + slashLeft  + underLine  + underLine   + slashLeft  + '\n');
+        System.out.println("7. Вывод в консоль ASCII-арт Дюка");
+        System.out.println(space4 + slashRight + slashLeft + space4 + '\n' + 
+                space3 + slashRight + space2 + slashLeft + space3 + '\n' + 
+                space2 + slashRight + underLine + bracketLeft + space1 + bracketRight + slashLeft + 
+                space2 + '\n' +  
+                space1 + slashRight + space6 + slashLeft + space1 + '\n' + 
+                slashRight + underLine + underLine + underLine + underLine +
+                slashRight + slashLeft + underLine + underLine + slashLeft + '\n');
     }
 
-    private static void printTask8() {
-        final String DESCRIPTION_TASK8 = "8. Вывод количества сотен, десятков и единиц числа\n";
-        final String STR_NUMBER        = "Число ";
-        final String STR_CONTAINS      = " содержит:";
-        final String STR_TENS          = " десяток\n";
-        final String STR_HUNDREDS      = " сотен\n";
-        final String STR_ONES          = " единиц\n";
-        final String STR_SUM           = "Сумма = ";
-        final String STR_MUL           = "Произведение = ";
-
+    private static void printSumMulNumber() {
         int number = 123;
-        System.out.println(DESCRIPTION_TASK8 + STR_NUMBER + number + STR_CONTAINS);
+        System.out.println("8. Вывод количества сотен, десятков и единиц числа");
+        System.out.println("Число " + number + " содержит: ");
         
         int ones = number % 10;
         number /= 10;
@@ -201,22 +165,21 @@ public class VariablesTheme {
         int hundreds = number % 10;
         number /= 10;
 
-        System.out.println(hundreds + STR_HUNDREDS +
-                tens    + STR_TENS +
-                ones    + STR_ONES + 
-                STR_SUM + ( ones + tens + hundreds ) + '\n' + 
-                STR_MUL + ones * tens * hundreds     + '\n');
+        System.out.println(hundreds + " сотен");
+        System.out.println(tens + " десяток");
+        System.out.println(ones + " единиц\n");
+        System.out.println("Сумма = " + ( ones + tens + hundreds ));
+        System.out.println("Произведение = " + ones * tens * hundreds + '\n');
     }
 
-    private static void printTask9() {
-        final String DESCRIPTION_TASK9 = "9. Вывод времени\n";
-        final char STR_SEP             = ':';
-
+    private static void printTime() {
         int seconds = 86399;
         int hours = seconds / 3600;
         seconds %= 3600;
         int minutes = seconds / 60;
         seconds %= 60;
-        System.out.println(DESCRIPTION_TASK9 + hours + STR_SEP + minutes + STR_SEP + seconds);
+
+        System.out.println("9. Вывод времени");
+        System.out.println(hours + ':' + minutes + ':' + seconds);
     }
 }
