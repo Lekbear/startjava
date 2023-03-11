@@ -40,6 +40,7 @@ public class IfElseStatementTheme {
         } else {
             System.out.println("Ваше имя начинается не с букв: 'M', 'I'");
         }
+
         System.out.println();
     }
 
@@ -57,12 +58,14 @@ public class IfElseStatementTheme {
         } else {
             System.out.println(number1 + " < " + number2);
         }
+
         System.out.println();
     }
 
     private static void printInfoNumber() {
-        System.out.println("3. Проверка числа");
         int number = 123;
+
+        System.out.println("3. Проверка числа");
         System.out.println("Проверка числа: " + number);
 
         if (number == 0) {
@@ -80,15 +83,16 @@ public class IfElseStatementTheme {
                 System.out.println("Число отрицательное");
             }
         }
+
         System.out.println();
     }
 
     private static void printInfoDigit() {
-        System.out.println("4. Поиск одинаковых цифр в числах");
         int num1 = 123;
         int num2 = 223;
         int digit = 1;
 
+        System.out.println("4. Поиск одинаковых цифр в числах");
         System.out.println("Исходные числа: " + num1 + ", " + num2);
 
         while (num1 > 0) {
@@ -100,13 +104,14 @@ public class IfElseStatementTheme {
             num2 /= 10;
             digit++;
         }
+
         System.out.println();
     }
 
     private static void printInfoSymbol() {
-        System.out.println("5. Определение символа по его коду");
-
         char symbol = '\u0057';
+
+        System.out.println("5. Определение символа по его коду");
         System.out.println("Исходный символ: " + symbol);
 
         if (symbol >= 'a' && symbol <= 'z') {
@@ -139,13 +144,11 @@ public class IfElseStatementTheme {
         System.out.println("Сумма вклада: " + amount);
         System.out.println("Начисленный процент за год: " + amount * percent / 100);
         System.out.println("Итоговая сумма с процентами: " + (amount + amount * percent / 100) + '\n');
-
     }
 
     private static void printSubjectGrades() {
         int percentHistory = 59;
         int percentProgramming = 91;
-
         int gradeHistory = getGradeByPersent(percentHistory);
         int gradeProgramming = getGradeByPersent(percentProgramming);
 
@@ -154,7 +157,6 @@ public class IfElseStatementTheme {
         System.out.println("Оценка по программированию: " + gradeProgramming);
         System.out.println("Средний бал оценок по предметам: " + (gradeHistory + gradeProgramming) / 2 );
         System.out.println("Средний процент по предметам: " + (percentHistory + percentProgramming) / 2 + '\n');
-
     }
 
     private static int getGradeByPersent(int percent) {
@@ -196,6 +198,7 @@ public class IfElseStatementTheme {
         System.out.println("Выдаваемая сумма: " + money);
 
         int i = 0;
+        
         while (i < banknotes.length && money > 0) {
             int countRequired = 0;
             
