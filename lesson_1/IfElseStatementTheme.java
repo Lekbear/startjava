@@ -68,20 +68,20 @@ public class IfElseStatementTheme {
         int number = 123;
 
         System.out.println("Проверка числа: " + number);
-
+        System.out.print("Число ");
         if (number == 0) {
-            System.out.println("Число = " + number);
+            System.out.println(" = " + number);
         } else {
             if (number % 2 == 0) {
-                System.out.println("Число четное");
+                System.out.print("четное ");
             } else {
-                System.out.println("Число нечетное");
+                System.out.print("нечетное ");
             }
 
             if (number > 0) {
-                System.out.println("Число положительное");
+                System.out.println("и положительное");
             } else {
-                System.out.println("Число отрицательное");
+                System.out.println("и отрицательное");
             }
         }
 
@@ -229,10 +229,10 @@ public class IfElseStatementTheme {
         if (money != actualMoney) {
             System.out.println("Не хватает банкнот для выдачи всей суммы");
         } else {
-            System.out.println("Требуемое количество банкнот для выдачи: ");
-            System.out.println(issuance100 + " банкнот номиналом 100 USD ");
-            System.out.println(issuance10 + " банкнот номиналом 10 USD "); 
-            System.out.println(issuance1 + " банкнот номиналом 1 USD "); 
+            System.out.println("Требуемое количество банкнот для выдачи:");
+            System.out.println(issuance100 + " банкнот номиналом 100 USD");
+            System.out.println(issuance10 + " банкнот номиналом 10 USD"); 
+            System.out.println(issuance1 + " банкнот номиналом 1 USD\n"); 
             System.out.println("Выдаваемая сумма: " + actualMoney);
         }
     }
