@@ -219,11 +219,29 @@ public class IfElseStatementTheme {
         System.out.println(usd10 + " банкнот номиналом 10 USD"); 
         System.out.println(usd1 + " банкнот номиналом 1 USD\n"); 
 
-        int issuance100 = Math.min(money / 100, usd100);
+        int issuance100 = usd100;
+        int current = money / 100;
+
+        if (issuance100 > current) {
+            issuance100 = current;
+        }
+
+        int issuance10 = usd10;
         int actualMoney = issuance100 * 100;
-        int issuance10 = Math.min(money - actualMoney, usd10);
+        current = money - actualMoney;
+
+        if (issuance10 > current) {
+            issuance10 = current;
+        }
+
+        int issuance1 = usd1;
         actualMoney += issuance10 * 10;
-        int issuance1 = Math.min(money - actualMoney, usd1);
+        current = money - actualMoney;
+
+        if (issuance1 > current) {
+            issuance1 = current;
+        }
+
         actualMoney += issuance1;
 
         if (money != actualMoney) {
