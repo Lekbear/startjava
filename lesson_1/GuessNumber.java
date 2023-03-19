@@ -4,18 +4,20 @@ public class GuessNumber {
         int right = 100;
         int hiddenNumber = 76;
 
-        while (left + 1 < right) {
-            int middle = (left + right) / 2;
+        while (left <= right) {
+            int playerNumber = (left + right) / 2;
 
-            if (hiddenNumber < middle) {
-                System.out.println("Загаданное число меньше " + middle);
-                right = middle;
+            if (playerNumber == hiddenNumber) {
+                break;
+            } else if (playerNumber > hiddenNumber) {
+                System.out.println("Число " + playerNumber + " больше загаданного");
+                right = playerNumber;
             } else {
-                System.out.println("Загаданное число больше " + middle);
-                left = middle;
+                System.out.println("Число " + playerNumber + " меньше загаданного");
+                left = playerNumber;
             }
         }
         System.out.println("Вы победили!");
-        System.out.println("Загаданно число: " + left);
+        System.out.println("Загаданно число: " + hiddenNumber);
     }
 }
