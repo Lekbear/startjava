@@ -1,37 +1,37 @@
 public class CyclesTheme {
     public static void main(String[] args) {
-        printOfSumInInterval();
-        printOfNumbersInIntreval();
+        printSumInterval();
+        printNumbersIntreval();
         printReversibleNumber();
-        printNumbersInMultipleLines();
+        printNumbersMultipleLines();
         printCheckNumberTwosEvenOdd();
         printFigures();
         printAsciiChar();
         printCheckPalindrome();
-        printCheckNumberOfLucky();
+        printCheckNumberLucky();
         printPythagoreanTable();
     }
 
-    public static void printOfSumInInterval() {
+    public static void printSumInterval() {
         System.out.println("1. Подсчет суммы четных и нечетных чисел");
-        int i = -10;
+        int counter = -10;
         int sumOdd = 0;
         int sumEven = 0;
 
         do {
-            if (i % 2 == 0) {
-                sumEven += i;
+            if (counter % 2 == 0) {
+                sumEven += counter;
             } else {
-                sumOdd += i;
+                sumOdd += counter;
             }
-            i++;
-        } while (i < 22);
+            counter++;
+        } while (counter < 22);
 
         System.out.println("в промежутке [-10, 21] сумма четных чисел = " + sumEven + ", а " + 
                 "нечетных = " + sumOdd + "\n");
     }
 
-    public static void printOfNumbersInIntreval() {
+    public static void printNumbersIntreval() {
         System.out.println("2. Вывод чисел в интервале (min и max) в порядке убывания");
 
         int number1 = 10;
@@ -60,63 +60,51 @@ public class CyclesTheme {
         for (int i = maxNumber - 1; i > minNumber; i--) {
             System.out.print(i + " ");
         }
-
-        System.out.println();
-        System.out.println();
     }
 
     public static void printReversibleNumber() {
-        System.out.println("3. Вывод реверсивного числа и суммы его цифр");
+        System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
 
         int number = 1234;
         int sum = 0;
 
         System.out.print("Исходное число в обратном порядке: ");
 
-        while (number != 0) {
-            System.out.print(number % 10);
-            sum += number % 10;
+        while (number > 0) {
+            int digit = number % 10;
+            System.out.print(digit);
+            sum += digit;
             number /= 10;
         }
 
         System.out.println("\nСумма цифр: " + sum + "\n");
     }
 
-    public static void printNumbersInMultipleLines() {
+    public static void printNumbersMultipleLines() {
         System.out.println("4. Вывод чисел на консоль в несколько строк");
 
         int left = 1;
         int right = 24;
-        int step = 2;
-        int countNumberOfLine = 5;
-        int totalLines = 0;
+        int countNumber = 0;
 
-        if (step * countNumberOfLine != 0) {
-            totalLines = (right - left + step * countNumberOfLine - 1) / (step * countNumberOfLine);
-        } else {
-            System.out.println("Шаг итерации или количество выводимых чисел в одной строке равно 0");
-            return;
-        }
+        for (int i = left; i < right; i += 2) {
+            System.out.printf("%4d ", i);
+            countNumber++;
 
-        for (int i = left; i < totalLines * countNumberOfLine * step; i += step) {
-            if (i >= right) {
-                System.out.printf("%4d", 0);
-            } else {
-                System.out.printf("%4d", i);
-            }
-
-            if ((i - left + step) % (step * countNumberOfLine) == 0 ) {
+            if (countNumber == 5) {
+                countNumber = 0;
                 System.out.println();
-            } else {
-                System.out.print(" ");
-            }
+            } 
+        };
+
+        for (int i = countNumber;i < 5 && i != 0; i++){
+            System.out.printf("%4d ", 0);
         }
 
-        System.out.println();
     }
 
     public static void printCheckNumberTwosEvenOdd() {
-        System.out.println("5. Проверка количества двоек на четность/нечетность");
+        System.out.println("\n\n5. Проверка количества двоек на четность/нечетность");
 
         int number = 3242592;
 
@@ -194,12 +182,10 @@ public class CyclesTheme {
             }
             System.out.println();
         } while (triangleEquilHeight > 0);
-
-        System.out.println();
     }
 
     public static void printAsciiChar() {
-        System.out.printf("7. Отображение ASCII-символов%n%5s%5s%n", "Dec", "Char");
+        System.out.printf("\n7. Отображение ASCII-символов%n%5s%5s%n", "Dec", "Char");
 
         for (int i = 0; i < 48 ; i++) {
             if ((int) i % 2 == 1) {
@@ -212,12 +198,10 @@ public class CyclesTheme {
                 System.out.printf("%5d%5s%n", (int) i, i);
             }
         }
-
-        System.out.println();
     }
 
     public static void printCheckPalindrome() {
-        System.out.println("8. Проверка, является ли число палиндромом");
+        System.out.println("\n8. Проверка, является ли число палиндромом");
         int number = 1234321;
         int saveNumber = number;
         int reverseNumber = 0;
@@ -236,7 +220,7 @@ public class CyclesTheme {
         System.out.println(" является палиндромом\n");
     }
 
-    public static void printCheckNumberOfLucky() {
+    public static void printCheckNumberLucky() {
         System.out.println("9. Определение, является ли число счастливым");
 
         int number = 123321;
