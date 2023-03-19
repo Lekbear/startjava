@@ -214,11 +214,6 @@ public class IfElseStatementTheme {
         int usd10 = 5;
         int usd100 = 10;
 
-        System.out.println("Доступное количество банкнот: ");
-        System.out.println(usd100 + " банкнот номиналом 100 USD");
-        System.out.println(usd10 + " банкнот номиналом 10 USD"); 
-        System.out.println(usd1 + " банкнот номиналом 1 USD\n"); 
-
         int issuance100 = usd100;
         int current = money / 100;
 
@@ -247,6 +242,10 @@ public class IfElseStatementTheme {
         if (money != actualMoney) {
             System.out.println("Не хватает банкнот для выдачи всей суммы");
         } else {
+            System.out.println("Доступное количество банкнот: ");
+            System.out.println(usd100 + " банкнот номиналом 100 USD");
+            System.out.println(usd10 + " банкнот номиналом 10 USD"); 
+            System.out.println(usd1 + " банкнот номиналом 1 USD\n"); 
             System.out.println("Требуемое количество банкнот для выдачи:");
             System.out.println(issuance100 + " банкнот номиналом 100 USD");
             System.out.println(issuance10 + " банкнот номиналом 10 USD"); 
