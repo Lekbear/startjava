@@ -95,9 +95,9 @@ public class CyclesTheme {
                 countNumber = 0;
                 System.out.println();
             } 
-        };
+        }
 
-        for (int i = countNumber;i < 5 && i != 0; i++){
+        for (int i = countNumber; i < 5 && i != 0; i++) {
             System.out.printf("%4d ", 0);
         }
 
@@ -133,11 +133,11 @@ public class CyclesTheme {
     public static void printFigures() {
         System.out.println("6. Отображение фигур в консоли");
 
-        int rectangleHeight = 5;
-        int rectangleWidth = 10;
+        int height = 5;
+        int width = 10;
 
-        for (int i = 0; i < rectangleHeight; i++) {
-            for (int j = 0; j < rectangleWidth; j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 System.out.print("*");
             }
             System.out.println();
@@ -145,43 +145,43 @@ public class CyclesTheme {
 
         System.out.println();
 
-        int triangleRightHeight = 5;
-        int triangleRightWidth = 5;
+        height = 5;
+        width = 5;
 
-        while (triangleRightHeight > 0) {
-            while (triangleRightWidth > 0) {
+        while (height > 0) {
+            while (width > 0) {
                 System.out.print("#");
-                triangleRightWidth--;
+                width--;
             }
 
-            triangleRightHeight--;
-            triangleRightWidth = triangleRightHeight;
+            height--;
+            width = height;
 
             System.out.println();
         }
 
         System.out.println();
 
-        int triangleEquilHeight = 5;
-        int triangleEquilWidth = 1;
+        height = 5;
+        width = 1;
         int counter = 1;
 
         do {
             do {
                 System.out.print("$");
-                triangleEquilWidth--;
-            } while (triangleEquilWidth > 0);
+                width--;
+            } while (width > 0);
 
             counter++;
-            triangleEquilHeight--;
+            height--;
 
-            if (counter >= triangleEquilHeight) {
-                triangleEquilWidth = triangleEquilHeight;
+            if (counter >= height) {
+                width = height;
             } else {
-                triangleEquilWidth = counter;
+                width = counter;
             }
             System.out.println();
-        } while (triangleEquilHeight > 0);
+        } while (height > 0);
     }
 
     public static void printAsciiChar() {
@@ -203,7 +203,7 @@ public class CyclesTheme {
     public static void printCheckPalindrome() {
         System.out.println("\n8. Проверка, является ли число палиндромом");
         int number = 1234321;
-        int saveNumber = number;
+        int copyNumber = number;
         int reverseNumber = 0;
 
         while (number > 0) {
@@ -211,9 +211,9 @@ public class CyclesTheme {
             number /= 10; 
         }
 
-        System.out.print("Число " + saveNumber);
+        System.out.print("Число " + copyNumber);
 
-        if (saveNumber != reverseNumber) {
+        if (copyNumber != reverseNumber) {
             System.out.print(" не");
         }
 
@@ -224,31 +224,25 @@ public class CyclesTheme {
         System.out.println("9. Определение, является ли число счастливым");
 
         int number = 123321;
-        int reverseNumber = 0;
         int middle = 3;
         int sum1 = 0;
         int sum2 = 0;
 
         System.out.println("Исходное число: " + number);
         System.out.print("Сумма цифр ");        
-        
-        while (number > 0) {
-            reverseNumber = reverseNumber * 10 + number % 10;
-            number /= 10;
-        }
 
         for (int i = 0; i < middle; i++) {
-            System.out.print(reverseNumber % 10);
-            sum2 += reverseNumber % 10;
-            reverseNumber /= 10;
+            System.out.print(number % 10);
+            sum2 += number % 10;
+            number /= 10;
         }
         
         System.out.print(" = " + sum2 + "\nСумма цифр ");
         
         for (int i = 0; i < middle; i++) {
-            System.out.print(reverseNumber % 10);
-            sum1 += reverseNumber% 10;
-            reverseNumber /= 10;
+            System.out.print(number % 10);
+            sum1 += number% 10;
+            number /= 10;
         }
 
         System.out.println(" = " + sum1);
