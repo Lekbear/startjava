@@ -9,7 +9,9 @@ public class GuessNumber {
 
             if (playerNumber == hiddenNumber) {
                 break;
-            } else if (playerNumber > hiddenNumber) {
+            } 
+
+            if (playerNumber > hiddenNumber) {
                 System.out.println("Число " + playerNumber + " больше загаданного");
                 right = playerNumber;
             } else {
