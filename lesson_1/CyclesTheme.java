@@ -100,7 +100,6 @@ public class CyclesTheme {
         for (int i = countNumber; i < 5 && i != 0; i++) {
             System.out.printf("%4d ", 0);
         }
-
     }
 
     public static void printCheckNumberTwosEvenOdd() {
@@ -224,24 +223,25 @@ public class CyclesTheme {
         System.out.println("9. Определение, является ли число счастливым");
 
         int number = 123321;
-        int middle = 3;
         int sum1 = 0;
         int sum2 = 0;
 
         System.out.println("Исходное число: " + number);
         System.out.print("Сумма цифр ");        
 
-        for (int i = 0; i < middle; i++) {
-            System.out.print(number % 10);
-            sum2 += number % 10;
-            number /= 10;
-        }
-        
-        System.out.print(" = " + sum2 + "\nСумма цифр ");
-        
-        for (int i = 0; i < middle; i++) {
-            System.out.print(number % 10);
-            sum1 += number% 10;
+        for (int i = 0; i < 6; i++) {
+            int digit = number % 10;
+
+            if (i == 3) {
+                System.out.print(" = " + sum1 + "\nСумма цифр ");
+                sum2 += digit;
+            } else if (i < 3) {
+                sum1 += digit;
+            } else {
+                sum2 += digit;
+            }
+            
+            System.out.print(digit);
             number /= 10;
         }
 

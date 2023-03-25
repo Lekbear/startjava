@@ -210,9 +210,9 @@ public class IfElseStatementTheme {
         System.out.println("9. Подсчет количества банкнот\n");
 
         int money = 567;
-        int usd1 = 50;
-        int usd10 = 5;
-        int usd100 = 10;
+        int usd1 = 0;
+        int usd10 = 56;
+        int usd100 = 7;
 
         int issuance100 = Math.min(usd100, money / 100);
         money -= issuance100 * 100;
