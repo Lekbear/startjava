@@ -167,7 +167,6 @@ public class VariablesTheme {
         System.out.println("9. Вывод времени");
 
         int seconds = 86399;
-
-        System.out.println("" + seconds / 3600 + ':' + seconds / 60 % 60+ ':' + seconds / 60 % 60);
+        System.out.println("" + seconds / 3600 + ':' + seconds / 60 % 60 + ':' + seconds % 60);
     }
 }
