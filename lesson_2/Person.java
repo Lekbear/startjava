@@ -1,4 +1,4 @@
-public class Person{
+public class Person {
     String gender = "Мужской";
     String name = "Alexey";
     int height = 177;
