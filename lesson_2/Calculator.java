@@ -53,7 +53,7 @@ public class Calculator {
                 result = number1 / number2;
                 break;
             case '^':
-                binpow(number1, number2);
+                binpow();
                 break;
             case '%':
                 result = number1 % number2;
@@ -61,14 +61,14 @@ public class Calculator {
         }
     }
 
-    public void binpow(int a, int n) {
+    public void binpow() {
         result = 1;
-        while (n != 0) {
-            if (n % 2 == 1) {
-                result *= a;
+        while (number2 != 0) {
+            if (number2 % 2 == 1) {
+                result *= number1;
             }
-            a *= a;
-            n /= 2;
+            number1 *= number1;
+            number2 /= 2;
         }
     }
 }
