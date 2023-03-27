@@ -11,8 +11,7 @@ public class CalculatorTest {
 
         do {
             System.out.print("Введите первое число: ");
-            int number1 = scanner.nextInt();
-            calculator.setNumber1(number1);
+            calculator.setNumber1(scanner.nextInt());
             scanner.nextLine();
 
             do {
