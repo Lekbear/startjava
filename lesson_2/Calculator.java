@@ -3,38 +3,31 @@ public class Calculator {
     private int number2;
     private char sign;
     private int result;
-    private int error = 0;
 
     public void setNumber1(int number1) {
         this.number1 = number1;
     }
 
-    public void setNumber2(int number2) {
-        error = 0;
+    public boolean setNumber2(int number2) {
         if (sign == '/' && number2 == 0) {
             System.out.println("Делить на ноль нельзя!!!");
-            error = 1;
-        } else {
-            this.number2 = number2;
-        }
+            return false;
+        } 
+        this.number2 = number2;
+        return true;
     }
 
-    public void setSign(char sign) {
-        error = 0;
+    public boolean setSign(char sign) {
         if (sign != '+' && sign != '-' && sign != '*' && sign != '/' && sign != '^' && sign != '%') {
             System.out.println("Введенная мат. операция не поддерживается");
-            error = 1;
-        } else {
-            this.sign = sign;
+            return false;
         }
+        this.sign = sign;
+        return true;
     }
 
     public int getResult() {
         return result;
-    }
-
-    public int getError() {
-        return error;
     }
 
     public void calculate() {

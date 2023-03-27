@@ -17,15 +17,11 @@ public class CalculatorTest {
 
             do {
                 System.out.print("Введите знак математической операции: ");
-                char sign = scanner.nextLine().charAt(0);
-                calculator.setSign(sign);
-            } while (calculator.getError() != 0);
+            } while (!calculator.setSign(scanner.nextLine().charAt(0)));
             
             do {
                 System.out.print("Введите второе число: ");
-                int number2 = scanner.nextInt();
-                calculator.setNumber2(number2);
-            } while (calculator.getError() != 0);
+            } while (!calculator.setNumber2(scanner.nextInt()));
 
             calculator.calculate();
             System.out.println("Результат: " + calculator.getResult());
@@ -34,8 +30,7 @@ public class CalculatorTest {
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 answer = scanner.nextLine();
-            } while(answer.equals(YES) == false && answer.equals(NO) == false);
-
+            } while(!answer.equals(YES) && !answer.equals(NO));
         } while (answer.equals(YES));
     }
 }
