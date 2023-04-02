@@ -43,7 +43,7 @@ public class GuessNumber {
     }
 
     public void guessNumber(Player player) {
-        System.out.print("Попытка игрока " + player.getName() + " угадать число: " );
+        System.out.print("Попытка игрока " + player.getName() + " угадать число: ");
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
