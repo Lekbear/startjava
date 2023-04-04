@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class GuessNumber {
-    private final int left = 1;
-    private final int right = 101;
+    private static final int LEFT = 0;
+    private static final int RIGHT = 100;
     private Player player1;
     private Player player2;
     private int hiddenNumber;
@@ -10,7 +10,7 @@ public class GuessNumber {
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        hiddenNumber = (int) (Math.random() * (right - left) + left);
+        hiddenNumber = (int) (Math.random() * (RIGHT - LEFT) + 1);
         System.out.println("Компьютер загадал число");
     }
 
@@ -28,6 +28,24 @@ public class GuessNumber {
         }
     }
 
+    private void guessNumber(Player player) {
+        System.out.print("Попытка игрока " + player.getName() + " угадать число: ");
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+                int number = Integer.parseInt(scanner.nextLine());
+                if (number > LEFT && number <= RIGHT) {
+                    player.setNumber(number);
+                    break;
+                }
+                System.out.print("Число нужно вводить в диапазоне (" + LEFT + ", " + RIGHT + "]: ");
+            } catch (NumberFormatException e) {
+                System.out.print("Неверный ввод!\nНужно ввести число: ");
+            }
+        }
+    }
+
     private boolean compareNumbers(Player player) {
         if (player.getNumber() == hiddenNumber) {
             System.out.println("Игрок " + player.getName() + " угадал загаданное число");
@@ -40,24 +58,5 @@ public class GuessNumber {
             System.out.println("Число " + player.getNumber() + " меньше того, что загадал компьютер");
         } 
         return false;
-    }
-
-    public void guessNumber(Player player) {
-        System.out.print("Попытка игрока " + player.getName() + " угадать число: ");
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            try {
-                int number = Integer.parseInt(scanner.nextLine());
-                if (number >= left && number <= right - 1) {
-                    player.setNumber(number);
-                    break;
-                }
-                System.out.print("Число нужно вводить в диапазоне (" + (left - 1) + ", " + 
-                        (right - 1) + "]: ");
-            } catch (NumberFormatException e) {
-                System.out.print("Неверный ввод!\nНужно ввести число: ");
-            }
-        }
     }
 }
