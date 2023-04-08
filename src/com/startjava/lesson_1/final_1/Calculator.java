@@ -1,3 +1,5 @@
+package com.startjava.lesson_1.final_1;
+
 public class Calculator {
     public static void main(String[] args) {
         int number1 = 2;
