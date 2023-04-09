@@ -3,7 +3,7 @@ package com.startjava.lesson_1.base;
 public class CyclesTheme {
     public static void main(String[] args) {
         printSumInterval();
-        printNumbersIntreval();
+        printNumbersInterval();
         printReversibleNumber();
         printNumbersMultipleLines();
         printCheckNumberTwosEvenOdd();
@@ -33,7 +33,7 @@ public class CyclesTheme {
                 "нечетных = " + sumOdd + "\n");
     }
 
-    public static void printNumbersIntreval() {
+    public static void printNumbersInterval() {
         System.out.println("2. Вывод чисел в интервале (min и max) в порядке убывания");
 
         int number1 = 10;
@@ -189,7 +189,7 @@ public class CyclesTheme {
         System.out.printf("\n7. Отображение ASCII-символов%n%5s%5s%n", "Dec", "Char");
 
         for (int i = 0; i < 48 ; i++) {
-            if ((int) i % 2 == 1) {
+            if (i % 2 == 1) {
                 System.out.printf("%5s%5s%n", i, (char) i);
             }
         }
