@@ -1,32 +1,32 @@
 package com.startjava.lesson_2_3_4.array;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class ArrayTheme {
     public static void main(String[] args) {
         reverseIntArray();
-        mulArray();
-        delArray();
+        multiplyArray();
+        removalArray();
         reverseCharArray();
-        genUniqueNum();
-        copyNonBlank();
+        genUniqueNums();
+        copyNonBlankStrings();
     }
 
     private static void reverseIntArray() {
         System.out.println("1. Реверс значений массива");
-        int[] numbers = {7, 1, 6, 2, 5, 3, 4};
+        int[] nums = {7, 1, 6, 2, 5, 3, 4};
         System.out.print("Исходный массив: ");
-        printIntArray(numbers);
+        printIntArray(nums);
+        int length = nums.length - 1;
 
-        for (int i = 0; i < numbers.length / 2; i++) {
-            int temp = numbers[i];
-            numbers[i] = numbers[numbers.length - i - 1];
-            numbers[numbers.length - i - 1] = temp;
+        for (int i = 0; i < nums.length / 2; i++) {
+            int temp = nums[i];
+            nums[i] = nums[length];
+            nums[length--] = temp;
         }
 
         System.out.print("Итоговый массив: ");
-        printIntArray(numbers);
+        printIntArray(nums);
     }
 
     private static void printIntArray(int[] array) {
@@ -36,50 +36,53 @@ public class ArrayTheme {
         System.out.println();
     }
 
-    private static void mulArray() {
+    private static void multiplyArray() {
         System.out.println("\n2. Вывод произведения элементов массива");
         int length = 10;
-        int[] numbers = new int[length];
-        int mul = length > 2 ? 1 : 0;
+        int[] digits = new int[length];
+        int product = 1;
 
-        for (int i = 0; i < length; i++) {
-            numbers[i] = i;
-            boolean marginal = i != 0 && i != length - 1;
-            mul = marginal ? mul * numbers[i] : mul;
-            System.out.print(i == length - 2 ? numbers[i] + " = " + mul : marginal ? numbers[i] + " * " : "");
+        digits[length - 1] = length - 1;
+
+        for (int i = 1; i < length - 1; i++) {
+            digits[i] = i;
+            product *= digits[i];
+            System.out.print(i == length - 2 ? digits[i] + " = " + product : digits[i] + " * ");
         }
 
-        System.out.println(length > 2 ? "\nnum[0] = " + numbers[0] + "\nnum[9] : " + numbers[length - 1] + "\n" : '\n');
+        System.out.println("\nnum[0] = " + digits[0] + "\nnum[9] : " + digits[length - 1] + "\n");
     }
 
-    private static void delArray() {
+    private static void removalArray() {
         System.out.println("3. Удаление элементов массива");
         int length = 15;
-        double[] numbers = new double[length];
-        int countZero = 0;
+        double[] nums = new double[length];
 
         for (int i = 0; i < length; i++) {
-            numbers[i] = Math.random();
+            nums[i] = Math.random();
         }
 
         System.out.println("Исходный массив:");
-        printDoubleArray(numbers);
+        printDoubleArray(nums);
+        int countZero = 0;
+        int middle = (length + 1) / 2 - 1;
 
         for (int i = 0; i < length; i++) {
-            if (numbers[i] > numbers[(length + 1) / 2 - 1]) {
-                numbers[i] = 0.0d;
+            if (nums[i] > nums[middle]) {
+                nums[i] = 0.0d;
                 countZero++;
             }
         }
 
         System.out.println("Изменённый массив:");
-        printDoubleArray(numbers);
+        printDoubleArray(nums);
         System.out.println("Количество обнуленных ячеек: " + countZero);
     }
 
     private static void printDoubleArray(double[] array) {
+        int middle = (array.length + 1) / 2 - 1;
         for (int i = 0; i < array.length; i++) {
-            if (i == (array.length + 1) / 2 - 1) {
+            if (i == middle) {
                 System.out.printf("%5.3f%n", array[i]);
             } else {
                 System.out.printf("%5.3f ", array[i]);
@@ -90,84 +93,93 @@ public class ArrayTheme {
 
     private static void reverseCharArray() {
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] symbols = new char['Z' - 'A' + 1];
-        int index = 0;
+        char[] alphabet = new char['Z' - 'A' + 1];
 
         for (char symbol = 'A'; symbol <= 'Z'; symbol++) {
-            symbols[index++] = symbol;
+            alphabet[symbol - 'A'] = symbol;
         }
 
-        for (int i = 1; i <= symbols.length; i++) {
+        for (int i = 1; i <= alphabet.length; i++) {
             for (int j = 0; j < i; j++) {
-                System.out.print(symbols[symbols.length - j - 1]);
+                System.out.print(alphabet[alphabet.length - j - 1]);
             }
             System.out.println();
         }
     }
 
-    private static void genUniqueNum() {
+    private static void genUniqueNums() {
         System.out.println("\n5. Генерация уникальных чисел");
         int left = 60;
         int right = 100;
         int length = 30;
-        int[] uniqueNumbers = new int[length];
-        int[] numbers = new int[right];
+        int[] uniqueNums = new int[length];
         int index = 0;
 
         while (index < length) {
-            int number = (int) (Math.random() * (right - left) + left);
-            if (numbers[number] == 0) {
-                numbers[number]++;
-                uniqueNumbers[index++] = number;
+            int num = (int) (Math.random() * (right - left) + left);
+            boolean unique = true;
+
+            for (int i = 0; i < index; i++) {
+                if (uniqueNums[i] == num) {
+                    unique = false;
+                    break;
+                }
+            }
+
+            if (unique) {
+                uniqueNums[index++] = num;
             }
         }
 
-        Arrays.sort(uniqueNumbers);
+        Arrays.sort(uniqueNums);
 
-        for (int i = 0; i < uniqueNumbers.length; i++) {
+        for (int i = 0; i < uniqueNums.length; i++) {
             if ((i + 1) % 10 == 0) {
-                System.out.printf("%3d%n", uniqueNumbers[i]);
+                System.out.printf("%3d%n", uniqueNums[i]);
             } else {
-                System.out.printf("%3d ", uniqueNumbers[i]);
+                System.out.printf("%3d ", uniqueNums[i]);
             }
         }
     }
 
-    private static void copyNonBlank() {
+    private static void copyNonBlankStrings() {
         System.out.println("\n6. Копирование не пустых строк");
-        String[] strs = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        String[] srcStrings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         int length = 0;
 
-        for (String str : strs) {
-            if (!str.isBlank()){
+        for (String str : srcStrings) {
+            if (!str.isBlank()) {
                 length++;
             }
         }
 
-        String[] copyStrs = new String[length];
-        int index1 = -1;
-        int index2 = 0;
+        String[] destSrings = new String[length];
+        int srcPos = -1;
+        int destPos = 0;
 
-        for (int i = 0; i < strs.length; i++) {
-            if (strs[i].isBlank() && index1 != -1) {
-                System.arraycopy(strs, index1, copyStrs, index2, i - index1);
-                index2 += i - index1;
-                index1 = -1;
+        for (int i = 0; i < srcStrings.length; i++) {
+            boolean empty = srcStrings[i].isBlank();
+
+            if (!empty && srcPos == -1) {
+                srcPos = i;
             }
 
-            if (!strs[i].isBlank() && index1 == -1) {
-                index1 = i;
+            if ((empty || i == srcStrings.length - 1) && srcPos != -1) {
+                if (!empty) {
+                    length = srcStrings.length - srcPos;
+                } else {
+                    length = i - srcPos;
+                }
+                System.arraycopy(srcStrings, srcPos, destSrings, destPos, length);
+                destPos += length;
+                srcPos = -1;
             }
-        }
-
-        if (index1 != -1) {
-            System.arraycopy(strs, index1, copyStrs, index2, strs.length - index1);
         }
 
         System.out.println("Исходный массив: ");
-        printStrArray(strs);
+        printStrArray(srcStrings);
         System.out.println("Массив без пустых строк и без строк из пробелов: ");
-        printStrArray(copyStrs);
+        printStrArray(destSrings);
     }
 
     private static void printStrArray(String[] array) {
