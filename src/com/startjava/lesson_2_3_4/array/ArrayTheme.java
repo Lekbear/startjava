@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class ArrayTheme {
     public static void main(String[] args) {
         reverseIntArray();
-        multiplyArray();
-        removalArray();
-        reverseCharArray();
+        multiplyElementsArray();
+        removeElementsArray();
+        reverseAlphabet();
         genUniqueNums();
         copyNonBlankStrings();
     }
@@ -36,24 +36,25 @@ public class ArrayTheme {
         System.out.println();
     }
 
-    private static void multiplyArray() {
+    private static void multiplyElementsArray() {
         System.out.println("\n2. Вывод произведения элементов массива");
         int length = 10;
-        int[] digits = new int[length];
+        int[] multipliers = new int[length];
         int product = 1;
 
-        digits[length - 1] = length - 1;
+        multipliers[length - 1] = length - 1;
 
         for (int i = 1; i < length - 1; i++) {
-            digits[i] = i;
-            product *= digits[i];
-            System.out.print(i == length - 2 ? digits[i] + " = " + product : digits[i] + " * ");
+            multipliers[i] = i;
+            product *= multipliers[i];
+            System.out.print(multipliers[i]);
+            System.out.print(i == length - 2 ? " = " + product : " * ");
         }
 
-        System.out.println("\nnum[0] = " + digits[0] + "\nnum[9] : " + digits[length - 1] + "\n");
+        System.out.println("\nnum[0] = " + multipliers[0] + "\nnum[9] : " + multipliers[length - 1] + "\n");
     }
 
-    private static void removalArray() {
+    private static void removeElementsArray() {
         System.out.println("3. Удаление элементов массива");
         int length = 15;
         double[] nums = new double[length];
@@ -65,10 +66,10 @@ public class ArrayTheme {
         System.out.println("Исходный массив:");
         printDoubleArray(nums);
         int countZero = 0;
-        int middle = (length + 1) / 2 - 1;
+        double middle = nums[(length + 1) / 2 - 1];
 
         for (int i = 0; i < length; i++) {
-            if (nums[i] > nums[middle]) {
+            if (nums[i] > middle) {
                 nums[i] = 0.0d;
                 countZero++;
             }
@@ -91,7 +92,7 @@ public class ArrayTheme {
         System.out.println();
     }
 
-    private static void reverseCharArray() {
+    private static void reverseAlphabet() {
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
         char[] alphabet = new char['Z' - 'A' + 1];
 
