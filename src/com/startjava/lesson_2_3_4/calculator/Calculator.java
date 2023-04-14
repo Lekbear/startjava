@@ -1,69 +1,62 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    private int number1;
-    private int number2;
+    private static final String OPERATIONS = "+-*/^%";
+    private int[] nums = new int[2];
     private char sign;
-    private int result;
 
-    public void setNumber1(int number1) {
-        this.number1 = number1;
-    }
+    public boolean parseMathExpression(String mathExpression) {
+        String[] expression = mathExpression.split(" ");
 
-    public boolean setNumber2(int number2) {
-        if (sign == '/' && number2 == 0) {
-            System.out.println("Делить на ноль нельзя!!!");
-            return false;
-        } 
-        this.number2 = number2;
-        return true;
-    }
-
-    public boolean setSign(char sign) {
-        if (sign != '+' && sign != '-' && sign != '*' && sign != '/' && sign != '^' && sign != '%') {
-            System.out.println("Введенная мат. операция не поддерживается");
+        if (expression.length != 3) {
+            System.out.println("Некорректный ввод математического выражения!");
             return false;
         }
-        this.sign = sign;
+
+        if (expression[1].length() != 1 || !OPERATIONS.contains(expression[1])) {
+            System.out.println("Знак математического выражения должен состоять из одного символа: " + OPERATIONS);
+            return false;
+        }
+
+        sign = expression[1].charAt(0);
+
+        try {
+            nums[0] = Integer.parseInt(expression[0]);
+            nums[1] = Integer.parseInt(expression[2]);
+        } catch (NumberFormatException e) {
+            System.out.println("Неверный ввод чисел!");
+            return false;
+        }
+
+        if (sign == '/' && nums[1] == 0) {
+            System.out.println("Делить на ноль нельзя!");
+            return false;
+        }
+
         return true;
     }
-
-    public int getResult() {
-        return result;
-    }
-
-    public void calculate() {
-        result = 0;
+    public double calculate() {
+        double result = 0.0d;
         switch(sign) {
             case '+':
-                result = number1 + number2;
+                result = Math.addExact(nums[0], nums[1]);
                 break;
             case '-':
-                result = number1 - number2;
+                result = Math.subtractExact(nums[0], nums[1]);
                 break;
             case '*':
-                result = number1 * number2;
+                result = Math.multiplyExact(nums[0], nums[1]);
                 break;
             case '/':
-                result = number1 / number2;
+                result = (double) nums[0] / nums[1];
                 break;
             case '^':
-                binpow();
+                result = Math.pow(nums[0], nums[1]);
                 break;
             case '%':
-                result = number1 % number2;
+                result = Math.IEEEremainder(nums[0], nums[1]);
                 break;
         }
-    }
-
-    public void binpow() {
-        result = 1;
-        while (number2 != 0) {
-            if (number2 % 2 == 1) {
-                result *= number1;
-            }
-            number1 *= number1;
-            number2 /= 2;
-        }
+        return result;
     }
 }

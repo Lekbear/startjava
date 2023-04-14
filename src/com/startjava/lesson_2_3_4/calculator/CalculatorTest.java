@@ -11,27 +11,23 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         String answer = YES;
 
-        do {
-            System.out.print("Введите первое число: ");
-            calculator.setNumber1(scanner.nextInt());
-            scanner.nextLine();
+        while (!NO.equals(answer)) {
+            if (YES.equals(answer)) {
+                System.out.print("Введите математическое выражение: ");
+                if (!calculator.parseMathExpression(scanner.nextLine())) {
+                    continue;
+                }
 
-            do {
-                System.out.print("Введите знак математической операции: ");
-            } while (!calculator.setSign(scanner.nextLine().charAt(0)));
-            
-            do {
-                System.out.print("Введите второе число: ");
-            } while (!calculator.setNumber2(scanner.nextInt()));
-
-            calculator.calculate();
-            System.out.println("Результат: " + calculator.getResult());
-            scanner.nextLine();
-            
-            do {
-                System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-                answer = scanner.nextLine();
-            } while (!answer.equals(YES) && !answer.equals(NO));
-        } while (answer.equals(YES));
+                double result = calculator.calculate();
+                System.out.print("Результат: ");
+                if ((result - Math.floor(result)) * 1000 == 0) {
+                    System.out.printf("%.0f%n", result);
+                } else {
+                    System.out.printf("%.3f%n", result);
+                }
+            }
+            System.out.print("Хотите продолжить вычисления? [yes/no]: ");
+            answer = scanner.nextLine();
+        }
     }
 }
