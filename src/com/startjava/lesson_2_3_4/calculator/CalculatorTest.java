@@ -14,20 +14,28 @@ public class CalculatorTest {
         while (!NO.equals(answer)) {
             if (YES.equals(answer)) {
                 System.out.print("Введите математическое выражение: ");
-                if (!calculator.parseMathExpression(scanner.nextLine())) {
-                    continue;
-                }
-
-                double result = calculator.calculate();
-                System.out.print("Результат: ");
-                if ((result - Math.floor(result)) * 1000 == 0) {
-                    System.out.printf("%.0f%n", result);
-                } else {
-                    System.out.printf("%.3f%n", result);
+                try {
+                    double result = calculator.calculate(scanner.nextLine());
+                    printResult(result);
+                } catch (ArithmeticException e) {
+                    System.out.println(e.getMessage());
+                } catch (NumberFormatException e) {
+                    System.out.println("Ошибка преобразования из строки в число");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
             }
             System.out.print("Хотите продолжить вычисления? [yes/no]: ");
             answer = scanner.nextLine();
+        }
+    }
+
+    private static void printResult(double result) {
+        System.out.print("Результат: ");
+        if (result % 1 < 0.001d) {
+            System.out.printf("%.0f%n", result);
+        } else {
+            System.out.printf("%.3f%n", result);
         }
     }
 }
