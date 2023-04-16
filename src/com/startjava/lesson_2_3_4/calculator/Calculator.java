@@ -24,7 +24,7 @@ public class Calculator {
         }
     }
 
-    public void parseMathExpression(String mathExpression) {
+    private void parseMathExpression(String mathExpression) {
         String[] partsExpression = mathExpression.split(" ");
 
         if (partsExpression.length != 3) {
