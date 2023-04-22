@@ -8,20 +8,17 @@ public class CalculatorTest {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator();
         String answer = YES;
 
         while (!NO.equals(answer)) {
             if (YES.equals(answer)) {
                 System.out.print("Введите математическое выражение: ");
                 try {
-                    double result = calculator.calculate(scanner.nextLine());
+                    double result = Calculator.calculate(scanner.nextLine());
                     printResult(result);
-                } catch (ArithmeticException e) {
-                    System.out.println(e.getMessage());
                 } catch (NumberFormatException e) {
                     System.out.println("Ошибка преобразования из строки в число");
-                } catch (IllegalArgumentException e) {
+                } catch (ArithmeticException | IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -32,10 +29,6 @@ public class CalculatorTest {
 
     private static void printResult(double result) {
         System.out.print("Результат: ");
-        if (result % 1 < 0.001d) {
-            System.out.printf("%.0f%n", result);
-        } else {
-            System.out.printf("%.3f%n", result);
-        }
+        System.out.printf(result % 1 < 0.001d ? "%.0f%n" : "%.3f%n", result);
     }
 }
