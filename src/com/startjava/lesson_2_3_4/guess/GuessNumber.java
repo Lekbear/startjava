@@ -3,31 +3,43 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Scanner;
 
 public class GuessNumber {
-    private static final int LEFT = 0;
-    private static final int RIGHT = 100;
-    private Player player1;
-    private Player player2;
+    protected static final int LEFT = 0;
+    protected static final int RIGHT = 100;
+    private Player[] players;
     private int hiddenNumber;
 
-    public GuessNumber(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public GuessNumber(Player[] players) {
+        this.players = players;
+        freePlayers();
         hiddenNumber = (int) (Math.random() * (RIGHT - LEFT) + 1);
-        System.out.println("Компьютер загадал число");
+        System.out.println("Компьютер загадал число\nУ каждого игрока по " + Player.MAX_ATTEMPT + " попыток");
     }
 
-    public void start() {
-        while (true) {
-            guessNumber(player1);
-            if (compareNumbers(player1)) {
-                break;
-            }  
+    private void freePlayers() {
+        for (Player player : players) {
+            player.free();
+        }
+    }
 
-            guessNumber(player2);
-            if (compareNumbers(player2)) {
-                break;
+    protected void start() {
+        while (true) {
+            if (!makeMove()) break;
+        }
+        printAttempts();
+    }
+
+    private boolean makeMove() {
+        boolean done = false;
+        for (Player player : players) {
+            if (player.checkCountAttempt()) {
+                guessNumber(player);
+                done = true;
+                if (compareNumbers(player)) {
+                    return false;
+                }
             }
         }
+        return done;
     }
 
     private void guessNumber(Player player) {
@@ -37,11 +49,9 @@ public class GuessNumber {
         while (true) {
             try {
                 int number = Integer.parseInt(scanner.nextLine());
-                if (number > LEFT && number <= RIGHT) {
-                    player.setNumber(number);
+                if (player.setNumbers(number)) {
                     break;
                 }
-                System.out.print("Число нужно вводить в диапазоне (" + LEFT + ", " + RIGHT + "]: ");
             } catch (NumberFormatException e) {
                 System.out.print("Неверный ввод!\nНужно ввести число: ");
             }
@@ -49,16 +59,23 @@ public class GuessNumber {
     }
 
     private boolean compareNumbers(Player player) {
-        if (player.getNumber() == hiddenNumber) {
-            System.out.println("Игрок " + player.getName() + " угадал загаданное число");
+        if (player.takeLastNumber() == hiddenNumber) {
+            System.out.println("Игрок " + player.getName() + " угадал число " + hiddenNumber + " с " +
+                        player.getCountAttempt() + " попытки");
             return true;
         }
 
-        if (player.getNumber() > hiddenNumber) {
-            System.out.println("Число " + player.getNumber() + " больше того, что загадал компьютер");
+        if (player.takeLastNumber() > hiddenNumber) {
+            System.out.println("Число " + player.takeLastNumber() + " больше того, что загадал компьютер");
         } else {
-            System.out.println("Число " + player.getNumber() + " меньше того, что загадал компьютер");
+            System.out.println("Число " + player.takeLastNumber() + " меньше того, что загадал компьютер");
         } 
         return false;
+    }
+
+    private void printAttempts() {
+        for (Player player : players) {
+            player.printNumbers();
+        }
     }
 }
