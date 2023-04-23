@@ -3,9 +3,9 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Scanner;
 
 public class GuessNumberTest {
+    public static final int COUNT_PLAYERS = 3;
     private static final String YES = "yes";
     private static final String NO = "no";
-    private static final int COUNT_PLAYERS = 2;
     private static Player[] players = new Player[COUNT_PLAYERS];
 
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class GuessNumberTest {
                 GuessNumber game = new GuessNumber(players);
                 game.start();
             }
-            System.out.print("Хотите продолжить вычисления? [yes/no]: ");
+            System.out.print("Хотите продолжить игру? [yes/no]: ");
             answer = scanner.nextLine();
         }
         scanner.close();
