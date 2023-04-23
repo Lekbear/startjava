@@ -17,6 +17,12 @@ public class GuessNumber {
         printSequenceGuessing();
     }
 
+    private void clearPlayers(boolean clearScore) {
+        for (Player player : players) {
+            player.clear(clearScore);
+        }
+    }
+
     private void shuffleFisherYates() {
         int countPlayers = GuessNumberTest.COUNT_PLAYERS;
         while (countPlayers > 1) {
@@ -101,12 +107,6 @@ public class GuessNumber {
                 System.out.printf("%d ", number);
             }
             System.out.println();
-        }
-    }
-
-    private void clearPlayers(boolean clearScore) {
-        for (Player player : players) {
-            player.clear(clearScore);
         }
     }
 
