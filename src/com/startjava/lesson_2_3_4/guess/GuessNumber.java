@@ -1,29 +1,22 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Scanner;
-import static java.lang.Math.max;
+import java.lang.Math;
 
 public class GuessNumber {
-    public static final int LEFT = 0;
-    public static final int RIGHT = 100;
-    private static final int COUNT_ROUND = 3;
+    static final int LEFT = 1;
+    static final int RIGHT = 100;
+    private static final int COUNT_ROUNDS = 3;
     private Player[] players;
     private int hiddenNumber;
 
-    public GuessNumber(Player ... players) {
+    GuessNumber(Player ... players) {
         this.players = players;
-        clearPlayers(true);
-        shuffleFisherYates();
-        printSequenceGuessing();
+        shufflePlayers();
+        printPlayers();
     }
 
-    private void clearPlayers(boolean clearScore) {
-        for (Player player : players) {
-            player.clear(clearScore);
-        }
-    }
-
-    private void shuffleFisherYates() {
+    private void shufflePlayers() {
         int countPlayers = GuessNumberTest.COUNT_PLAYERS;
         while (countPlayers > 1) {
             int randomPos = (int) (Math.random() * countPlayers);
@@ -34,42 +27,42 @@ public class GuessNumber {
         }
     }
 
-    private void printSequenceGuessing() {
+    private void printPlayers() {
         System.out.println("По результатам жребия, порядок игроков для угадывания чисел, следующий: ");
         for (int i = 0; i < players.length; i++) {
-            System.out.printf(i != players.length - 1 ? "%s, " : "%s", players[i].getName());
+            System.out.printf(i < players.length - 1 ? "%s, " : "%s", players[i].getName());
         }
         System.out.println();
     }
 
-    public void start() {
-        for (int i = 0; i < COUNT_ROUND; i++) {
-            hiddenNumber = (int) (Math.random() * (RIGHT - LEFT) + 1);
-            System.out.printf("Компьютер загадал число\nУ каждого игрока по %d попыток%nНачало %d-го раунда%n",
-                        Player.MAX_ATTEMPT, i + 1);
-            while (true) {
-                if (!makeMove()) break;
-            }
+    void start() {
+        for (int i = 0; i < COUNT_ROUNDS; i++) {
+            hiddenNumber = (int) (Math.random() * (RIGHT - LEFT + 1) + LEFT);
+            System.out.printf("Компьютер загадал число%n" +
+                    "У каждого игрока по %d попыток%n" +
+                    "Начало %d-го раунда%n",
+                    Player.MAX_ATTEMPT, i + 1);
+            while (!makeMove()) {}
             printAttempts();
-            clearPlayers(false);
+            clearPlayers();
         }
         determineWinner();
+        clearScore();
     }
 
     private boolean makeMove() {
-        boolean done = false;
         for (Player player : players) {
             if (player.hasAttempt()) {
                 guessNumber(player);
-                done = true;
                 if (compareNumbers(player)) {
-                    return false;
+                    return true;
                 }
                 continue;
             }
-            System.out.println("У " + player.getName() + " закончились попытки");
+            System.out.println("У игроков закончились попытки");
+            return true;
         }
-        return done;
+        return false;
     }
 
     private void guessNumber(Player player) {
@@ -81,7 +74,7 @@ public class GuessNumber {
                 if (player.setNumber(number)) {
                     break;
                 }
-                System.out.print("Число нужно вводить в диапазоне (" + LEFT + ", " + RIGHT + "]: ");
+                System.out.print("Число нужно вводить в диапазоне (" + (LEFT - 1) + ", " + RIGHT + "]: ");
             } catch (NumberFormatException e) {
                 System.out.print("Неверный ввод!\nНужно ввести число: ");
             }
@@ -91,12 +84,12 @@ public class GuessNumber {
     private boolean compareNumbers(Player player) {
         if (player.getLastNumber() == hiddenNumber) {
             System.out.println("Игрок " + player.getName() + " угадал число " + hiddenNumber + " с " +
-                        player.getCountAttempt() + " попытки");
+                    player.getCountAttempt() + " попытки");
             player.setScore(player.getScore() + 1);
             return true;
         }
         System.out.printf("Число %d %s того, что загадал компьютер%n", player.getLastNumber(),
-                    player.getLastNumber() > hiddenNumber ? "больше" : "меньше");
+                player.getLastNumber() > hiddenNumber ? "больше" : "меньше");
         return false;
     }
 
@@ -110,10 +103,16 @@ public class GuessNumber {
         }
     }
 
+    private void clearPlayers() {
+        for (Player player : players) {
+            player.clear();
+        }
+    }
+
     private void determineWinner() {
         int maxScore = players[0].getScore();
         for (Player player : players) {
-            maxScore = max(maxScore, player.getScore());
+            maxScore = Math.max(maxScore, player.getScore());
         }
 
         int countWinners = 0;
@@ -128,5 +127,11 @@ public class GuessNumber {
             }
         }
         System.out.println();
+    }
+
+    private void clearScore() {
+        for (Player player : players) {
+            player.setScore(0);
+        }
     }
 }
