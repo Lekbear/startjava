@@ -1,7 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Scanner;
-import java.lang.Math;
 
 public class GuessNumber {
     static final int LEFT = 1;
