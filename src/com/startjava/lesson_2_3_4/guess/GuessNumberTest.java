@@ -33,7 +33,7 @@ public class GuessNumberTest {
 
     private static Player[] createPlayers(Scanner scanner) {
         Player[] players = new Player[COUNT_PLAYERS];
-        for (int i = 0; i < players.length; i++) {
+        for (int i = 0; i < COUNT_PLAYERS; i++) {
             System.out.print("Введите имя " + (i + 1) + "-го игрока : ");
             players[i] = new Player(scanner.nextLine());
         }

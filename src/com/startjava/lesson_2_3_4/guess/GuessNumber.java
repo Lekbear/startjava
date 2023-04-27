@@ -12,7 +12,7 @@ public class GuessNumber {
     GuessNumber(Player ... players) {
         this.players = players;
         shufflePlayers();
-        printPlayers();
+        printSequencePlayers();
     }
 
     private void shufflePlayers() {
@@ -26,7 +26,7 @@ public class GuessNumber {
         }
     }
 
-    private void printPlayers() {
+    private void printSequencePlayers() {
         System.out.println("По результатам жребия, порядок игроков для угадывания чисел, следующий: ");
         for (int i = 0; i < players.length; i++) {
             System.out.printf(i < players.length - 1 ? "%s, " : "%s", players[i].getName());
@@ -41,7 +41,7 @@ public class GuessNumber {
                     "У каждого игрока по %d попыток%n" +
                     "Начало %d-го раунда%n",
                     Player.MAX_ATTEMPT, i + 1);
-            while (!makeMove()) {}
+            while (!isGuessed()) {}
             printAttempts();
             clearPlayers();
         }
@@ -49,7 +49,7 @@ public class GuessNumber {
         clearScore();
     }
 
-    private boolean makeMove() {
+    private boolean isGuessed() {
         for (Player player : players) {
             if (player.hasAttempt()) {
                 guessNumber(player);
