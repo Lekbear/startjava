@@ -3,9 +3,9 @@ package com.startjava.graduation.bookshelf;
 import java.util.Scanner;
 
 public class BookshelfTest {
-    private static final String DELETE_BOOK = "delete";
-    private static final String SAVE_BOOK = "save";
-    private static final String FIND_BOOK = "find";
+    private static final String DELETE = "delete";
+    private static final String SAVE = "save";
+    private static final String FIND = "find";
     private static final String CLEAR_BOOKSHELF = "clear";
     private static final String QUIT = "quit";
     private static Bookshelf bookshelf = new Bookshelf();
@@ -28,9 +28,9 @@ public class BookshelfTest {
     }
 
     private static void printInfoBookshelf() {
-        System.out.println("В шкафу " + bookshelf.getCountBooks() + " книга(и) и свободно " + (Bookshelf.MAX_BOOKS -
-                bookshelf.getCountBooks()) + " полок");
         if (bookshelf.getCountBooks() > 0) {
+            System.out.println("В шкафу " + bookshelf.getCountBooks() + " книга(и) и свободно " + (Bookshelf.MAX_BOOKS -
+                    bookshelf.getCountBooks()) + " полок");
             for (Book book : bookshelf.getBooks()) {
                 printBookshelf(book);
             }
@@ -67,9 +67,9 @@ public class BookshelfTest {
         System.out.println("Введите одну из доступных команд: ");
         String[] partsExpression = parse(scanner.nextLine());
         switch (partsExpression[0]) {
-            case DELETE_BOOK -> deleteBook(partsExpression[1]);
-            case SAVE_BOOK -> saveBook(partsExpression[1], partsExpression[2], Integer.parseInt(partsExpression[3]));
-            case FIND_BOOK -> findBook(partsExpression[1]);
+            case DELETE -> deleteBook(partsExpression[1]);
+            case SAVE -> saveBook(partsExpression[1], partsExpression[2], Integer.parseInt(partsExpression[3]));
+            case FIND -> findBook(partsExpression[1]);
             case CLEAR_BOOKSHELF -> clearBookshelf();
             case QUIT -> exit = true;
             default -> throw new IllegalArgumentException("Введена неизвестная команда!");
@@ -88,15 +88,15 @@ public class BookshelfTest {
             throw new IllegalArgumentException("Нужно вводить одну из доступных команд");
         }
 
-        if (DELETE_BOOK.equals(partsExpression[0]) && partsExpression.length != 2) {
+        if (DELETE.equals(partsExpression[0]) && partsExpression.length != 2) {
             throw new IllegalArgumentException("Нужно вводить в формате: \"delete <title>\"");
         }
 
-        if (SAVE_BOOK.equals(partsExpression[0]) && partsExpression.length != 4) {
+        if (SAVE.equals(partsExpression[0]) && partsExpression.length != 4) {
             throw new IllegalArgumentException("Нужно вводить в формате: \"save <author> <title> <publishYear>\"");
         }
 
-        if (FIND_BOOK.equals(partsExpression[0]) && partsExpression.length != 2) {
+        if (FIND.equals(partsExpression[0]) && partsExpression.length != 2) {
             throw new IllegalArgumentException("Нужно вводить в формате: \"find <title>\"");
         }
 
@@ -112,17 +112,17 @@ public class BookshelfTest {
     }
 
     private static void deleteBook(String title) {
-        if (!bookshelf.deleteBook(title))
+        if (!bookshelf.delete(title))
             System.out.println("Книга " + title + " не была удалена!");
     }
 
     private static void saveBook(String author, String title, int publishYear) {
-        if (!bookshelf.saveBook(author, title, publishYear))
+        if (!bookshelf.save(new Book(author, title, publishYear)))
             System.out.println("Книга " + title + " не была сохранена!");
     }
 
     private static void findBook(String title) {
-        Book book = bookshelf.findBook(title);
+        Book book = bookshelf.find(title);
         if (book == null) {
             System.out.println("Книга " + title + " не была найдена!");
         } else {

@@ -6,11 +6,11 @@ public class Book {
     private int year;
     private int length;
 
-    public Book(String author, String title, int year, int length) {
+    public Book(String author, String title, int year) {
         this.author = author;
         this.title = title;
         this.year = year;
-        this.length = length;
+        length = author.length() + title.length() + Integer.toString(year).length() + 4;
     }
 
     String getTitle() {

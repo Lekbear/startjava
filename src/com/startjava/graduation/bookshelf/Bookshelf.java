@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Bookshelf {
     static final int MAX_BOOKS = 10;
-    private int countBooks = 0;
-    private int maxLength = 0;
+    private int countBooks;
+    private int maxLength;
     private Book[] books = new Book[MAX_BOOKS];
 
     int getCountBooks() {
@@ -20,39 +20,31 @@ public class Bookshelf {
         return Arrays.copyOf(books, countBooks);
     }
 
-    boolean deleteBook(String title) {
+    boolean delete(String title) {
         for (int i = 0; i < countBooks; i++) {
             if (books[i].getTitle().equals(title)) {
                 if (books[i].getLength() == maxLength) {
                     refreshMaxLength(i);
                 }
-                System.arraycopy(books, i + 1, books, i, countBooks - i - 1);
-                books[countBooks - 1] = null;
                 countBooks--;
+                System.arraycopy(books, i + 1, books, i, countBooks - i);
+                books[countBooks] = null;
                 return true;
             }
         }
         return false;
     }
 
-    void refreshMaxLength(int index) {
-        maxLength = 0;
-        for (int i = 0; i < countBooks; i++) {
-            if (i != index) maxLength = Math.max(maxLength, books[i].getLength());
-        }
-    }
-
-    boolean saveBook(String author, String title, int publishYear) {
+    boolean save(Book book) {
         if (countBooks < MAX_BOOKS) {
-            int length = author.length() + title.length() + Integer.toString(publishYear).length() + 4;
-            books[countBooks++] = new Book(author, title, publishYear, length);
-            maxLength = Math.max(maxLength, length);
+            books[countBooks] = book;
+            maxLength = Math.max(maxLength, books[countBooks++].getLength());
             return true;
         }
         return false;
     }
 
-    Book findBook(String title) {
+    Book find(String title) {
         for (int i = 0; i < countBooks; i++) {
             if (books[i].getTitle().equals(title)) {
                 return books[i];
@@ -65,5 +57,12 @@ public class Bookshelf {
         Arrays.fill(books, 0, countBooks, null);
         countBooks = 0;
         maxLength = 0;
+    }
+
+    private void refreshMaxLength(int index) {
+        maxLength = 0;
+        for (int i = 0; i < countBooks; i++) {
+            if (i != index) maxLength = Math.max(maxLength, books[i].getLength());
+        }
     }
 }
