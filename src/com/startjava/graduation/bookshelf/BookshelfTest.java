@@ -10,15 +10,15 @@ public class BookshelfTest {
     private static final String QUIT = "quit";
     private static Bookshelf bookshelf = new Bookshelf();
     private static Scanner scanner = new Scanner(System.in);
-    private static boolean exit = false;
+    private static boolean active = true;
 
     public static void main(String[] args) {
-        while (!exit) {
+        while (active) {
             try {
-                printInfoBookshelf();
+                printBookshelfInfo();
                 printMenu();
-                selectionMenu();
-                pressedEnter();
+                selectFromMenu();
+                pressEnter();
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка преобразования из строки в число");
             } catch (IllegalArgumentException e) {
@@ -27,30 +27,25 @@ public class BookshelfTest {
         }
     }
 
-    private static void printInfoBookshelf() {
+    private static void printBookshelfInfo() {
         if (bookshelf.getCountBooks() > 0) {
-            System.out.println("В шкафу " + bookshelf.getCountBooks() + " книга(и) и свободно " + (Bookshelf.MAX_BOOKS -
-                    bookshelf.getCountBooks()) + " полок");
-            for (Book book : bookshelf.getBooks()) {
-                printBookshelf(book);
-            }
-            if (bookshelf.getCountBooks() < Bookshelf.MAX_BOOKS) {
-                printEmptyBookshelf();
-            }
-            System.out.println();
+            System.out.println("В шкафу " + bookshelf.getCountBooks() + " книга(и) и свободно " +
+                    (Bookshelf.MAX_BOOKS - bookshelf.getCountBooks()) + " полок");
+            printBookshelf();
         } else {
             System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу");
         }
     }
 
-    private static void printBookshelf(Book book) {
-        int maxLength = bookshelf.getMaxLength();
-        System.out.println("|" + book + " ".repeat(maxLength - book.getLength()) + "|");
-        System.out.println("|" + "-".repeat(maxLength) + "|");
-    }
-
-    private static void printEmptyBookshelf() {
-        System.out.println("|" + " ".repeat(bookshelf.getMaxLength()) + "|");
+    private static void printBookshelf() {
+        for (Book book : bookshelf.getBooks()) {
+            System.out.println("|" + book + " ".repeat(bookshelf.getMaxLength() - book.getLength()) + "|");
+            System.out.println("|" + "-".repeat(bookshelf.getMaxLength()) + "|");
+        }
+        if (bookshelf.getCountBooks() < Bookshelf.MAX_BOOKS) {
+            System.out.println("|" + " ".repeat(bookshelf.getMaxLength()) + "|");
+        }
+        System.out.println();
     }
 
     private static void printMenu() {
@@ -63,20 +58,20 @@ public class BookshelfTest {
                 5. quit""");
     }
 
-    private static void selectionMenu() {
+    private static void selectFromMenu() {
         System.out.println("Введите одну из доступных команд: ");
-        String[] partsExpression = parse(scanner.nextLine());
-        switch (partsExpression[0]) {
-            case DELETE -> deleteBook(partsExpression[1]);
-            case SAVE -> saveBook(partsExpression[1], partsExpression[2], Integer.parseInt(partsExpression[3]));
-            case FIND -> findBook(partsExpression[1]);
+        String[] details = parse(scanner.nextLine());
+        switch (details[0]) {
+            case DELETE -> deleteBook(details[1]);
+            case SAVE -> saveBook(details);
+            case FIND -> findBook(details[1]);
             case CLEAR_BOOKSHELF -> clearBookshelf();
-            case QUIT -> exit = true;
+            case QUIT -> active = false;
             default -> throw new IllegalArgumentException("Введена неизвестная команда!");
         }
     }
 
-    private static void pressedEnter() {
+    private static void pressEnter() {
         System.out.println("Для продолжения работы нажмите Enter");
         scanner.nextLine();
     }
@@ -116,9 +111,9 @@ public class BookshelfTest {
             System.out.println("Книга " + title + " не была удалена!");
     }
 
-    private static void saveBook(String author, String title, int publishYear) {
-        if (!bookshelf.save(new Book(author, title, publishYear)))
-            System.out.println("Книга " + title + " не была сохранена!");
+    private static void saveBook(String[] details) {
+        if (!bookshelf.save(new Book(details[1], details[2], Integer.parseInt(details[3]))))
+            System.out.println("Книга " + details[2] + " не была сохранена!");
     }
 
     private static void findBook(String title) {

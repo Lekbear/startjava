@@ -10,7 +10,7 @@ public class Book {
         this.author = author;
         this.title = title;
         this.year = year;
-        length = author.length() + title.length() + Integer.toString(year).length() + 4;
+        length = toString().length();
     }
 
     String getTitle() {
