@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS jaegers;
 
 CREATE DATABASE jaegers;
 
-\connect jaegers ;
+\connect jaegers;
 
 DROP TABLE IF EXISTS jaegers;
 

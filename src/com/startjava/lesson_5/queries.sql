@@ -32,8 +32,8 @@ SELECT *
 SELECT *
   FROM jaegers
  WHERE kaijukill =
-       (SELECT MAX(kaijuKill)
-          FROM jaegers);
+         (SELECT MAX(kaijuKill)
+            FROM jaegers);
 
 \echo 'display average weight of robots'
 SELECT AVG(weight)
@@ -46,4 +46,4 @@ UPDATE jaegers
 
  \echo 'remove destroyed robots'
  DELETE FROM jaegers
-       WHERE status = 'Destroyed';
+  WHERE status = 'Destroyed';
